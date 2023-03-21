@@ -4,7 +4,11 @@ function enterCommand(event) {
     // Cancel the default action, if needed
     event.preventDefault();
     // Trigger the button element with a click
-    //document.getElementById("commandLine").click();
+    var logs = document.getElementsByClassName("logs")[0].innerHTML;
+    logs+= "<br>"+document.getElementById("commandLine").value;
+    console.log(document.getElementById("commandLine").value)
+    document.getElementsByClassName("logs")[0].innerHTML = logs;
+    document.getElementById("commandLine").value = "";
     console.log("Oui")
   } 
 }
@@ -27,7 +31,7 @@ function loader() {
 loader()
 
 // Execute a function when the user presses a key on the keyboard
-var inputCommand = document.getElementsByClassName("command")[0];
-inputCommand.addEventListener("keypress", function(event) {
+var divCommand = document.getElementsByClassName("command")[0];
+divCommand.addEventListener("keypress", function(event) {
     enterCommand(event);
   }); 
