@@ -1,11 +1,12 @@
 function enterCommand(event) {
+    // Function to enter command
     // If the user presses the "Enter" key on the keyboard
     if (event.key === "Enter") {
     // Cancel the default action, if needed
     event.preventDefault();
     // Trigger the button element with a click
     var logs = document.getElementsByClassName("logs")[0].innerHTML;
-    logs+= "<br>"+document.getElementById("commandLine").value;
+    logs+= "<br>"+document.getElementById("commandLine").value; //Get the document.getElementById("commandLine").value for the command.
     console.log(document.getElementById("commandLine").value)
     document.getElementsByClassName("logs")[0].innerHTML = logs;
     document.getElementById("commandLine").value = "";
