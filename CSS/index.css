@@ -63,9 +63,9 @@
 .Prompt {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 60%;
     height: 200px;
-    margin: 1.5%;
+    margin-right: 2%;
 
     background: #D9D9D9;
 }
@@ -89,4 +89,27 @@ nav {
     
         background: #D9D9D9;
         overflow-y:scroll
+}
+
+.bottom{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    margin: 1.5%;
+
+}
+
+.imagePokemon{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+    width: 40%;
+    height: 200px;
+    margin-left: 2%;
+    background: #D9D9D9;
 }
