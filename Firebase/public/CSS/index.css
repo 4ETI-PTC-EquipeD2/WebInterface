@@ -83,3 +83,32 @@ nav {
     width: 100%;
     height: 100%;
 }
+
+canvas {
+    border: 1px solid black;
+    display: flex;
+    margin: 10px;
+}
+
+.HistoryMap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.HistoryMap canvas {
+    margin: 10px;
+    border: 1px solid black;
+}
+
+#pointsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.MainHistory {
+    width: 100%;
+    text-align: center;
+    margin: 1.5%;
+}
