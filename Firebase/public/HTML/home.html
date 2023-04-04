@@ -17,9 +17,25 @@
                 <button class="save-button" id="saveButtonId">Save</button>
             </div>
         </div>
-        <div class="prompt"></div>
+        <div class="prompt">
+            <div class="console">
+                <div class="divLogs">
+                    <p class="logs"> 
+                        Some logs here
+                    </p>
+                </div>
+                    
+                <div class="command">
+                    <input type="text" placeholder="Type your command" required id="commandLine">
+                </div>
+            </div>
+            <div class="display-image">
+                <canvas class="imagePokemon" id="imPokemon"></canvas>
+            </div>
+        </div>
     </div>
     <script src="../JS/loader.js "></script>
     <script type="module" src="../JS/map.js"></script>
+    <script type="module" src="../JS/JavaScript.js"></script>
 </body>
 </html>
