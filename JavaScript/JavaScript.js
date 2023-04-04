@@ -1,5 +1,6 @@
 import * as L from './Logs.js';
 import * as Pokemon from './Pokemon.js';
+import * as H from './Header.js';
 /*function enterCommand(event) {
     // Function to enter command
     // If the user presses the "Enter" key on the keyboard
@@ -54,22 +55,9 @@ function writeToLogs(text) {
     document.getElementsByClassName("logs")[0].innerHTML = logs;
 }
 */
-function loader() {
-    fetch("header.html")
-        .then(response => {
-            return response.text();
-        })
-        .then(data => {
-            document.querySelector("header").innerHTML = data;
-            let liens = document.querySelectorAll("nav a");
-            liens.forEach(a => {
-                if (a.href == location.protocol + '//' + location.host + location.pathname)
-                    a.classList.add('active');
-            });
-        });
-    }
 
-loader();
+let Header=new H.header
+Header.loader();
 //debugger
 let Logs = new L.logs();
 let tiplouf = new Pokemon.pokemon(Logs,0);
