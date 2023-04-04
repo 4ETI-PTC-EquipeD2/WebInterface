@@ -61,9 +61,11 @@
 /* Prompt */
 
 .Prompt {
-    width: 100%;
-    height: 100px;
-    margin: 1.5%;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    height: 200px;
+    margin-right: 2%;
 
     background: #D9D9D9;
 }
@@ -80,11 +82,34 @@ nav {
 
 .divLogs{
         display: flex;
-        flex-direction: column;
+        flex-direction: column-reverse;
         width: 100%;
-        height: 100px;
-        margin: 1.5%;
+        height: 150px;
+        margin: 0%;
     
         background: #D9D9D9;
         overflow-y:scroll
+}
+
+.bottom{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    margin: 1.5%;
+
+}
+
+.imagePokemon{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+    width: 40%;
+    height: 200px;
+    margin-left: 2%;
+    background: #D9D9D9;
 }
