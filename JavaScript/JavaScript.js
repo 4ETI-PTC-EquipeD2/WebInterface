@@ -1,4 +1,6 @@
-function enterCommand(event) {
+import * as L from './Logs.js';
+import * as Pokemon from './Pokemon.js';
+/*function enterCommand(event) {
     // Function to enter command
     // If the user presses the "Enter" key on the keyboard
     if (event.key === "Enter") {
@@ -51,7 +53,7 @@ function writeToLogs(text) {
     logs+= text
     document.getElementsByClassName("logs")[0].innerHTML = logs;
 }
-
+*/
 function loader() {
     fetch("header.html")
         .then(response => {
@@ -59,7 +61,7 @@ function loader() {
         })
         .then(data => {
             document.querySelector("header").innerHTML = data;
-            liens = document.querySelectorAll("nav a");
+            let liens = document.querySelectorAll("nav a");
             liens.forEach(a => {
                 if (a.href == location.protocol + '//' + location.host + location.pathname)
                     a.classList.add('active');
@@ -69,12 +71,14 @@ function loader() {
 
 loader();
 //debugger
-let contenu_json=loadJson("../JSON/pokemon.json");
-console.log(contenu_json)
-showPokemon(0);
+let Logs = new L.logs();
+let tiplouf = new Pokemon.pokemon(Logs,0);
+tiplouf.showPokemon("imPokemon");
+// let contenu_json=loadJson("../JSON/pokemon.json");
+// console.log(contenu_json)
 
 // Execute a function when the user presses a key on the keyboard
-var divCommand = document.getElementsByClassName("command")[0];
-divCommand.addEventListener("keypress", function(event) {
-    enterCommand(event);
-  }); 
+// var divCommand = document.getElementsByClassName("command")[0];
+// divCommand.addEventListener("keypress", function(event) {
+//     enterCommand(event);
+//   }); 
