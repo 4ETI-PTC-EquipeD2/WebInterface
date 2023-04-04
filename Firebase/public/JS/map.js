@@ -25,7 +25,7 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
 
-if (window.location.pathname.includes('index.html')) {
+if (window.location.pathname.includes('home.html')) {
 
     // get the canvas element
     var canvas = document.getElementById("mapCanvas");

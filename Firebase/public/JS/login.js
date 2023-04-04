@@ -40,7 +40,7 @@ submitButton.addEventListener("click", function() {
       window.alert("Success! Welcome back!");
 
       // Redirect to the welcome page
-      window.location.href = "/Firebase/public/HTML/home.html";
+      window.location.href = "/HTML/home.html";
       // ...
     })
     .catch((error) => {
