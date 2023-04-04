@@ -1,5 +1,5 @@
 function loader() {
-    fetch("header2.html")
+    fetch("header.html")
     .then(response => {
         return response.text();
     })
