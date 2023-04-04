@@ -1,25 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>PokeBot</title>
+<html>
+  <head>
+    <title>Login</title>
     <link rel="stylesheet" href="/Firebase/public/CSS/index.css">
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <header></header>
-        </div>
-        <div class="main">
-            <div class="live-video"></div>
-            <div class="map">
-                <canvas class='canvas_map' id="mapCanvas"></canvas>
-                <button class="save-button" id="saveButtonId">Save</button>
-            </div>
-        </div>
-        <div class="prompt"></div>
+  </head>
+  <body>
+    <div class="login-container">
+      <div class="login-card">
+        <h1>Sign In</h1>
+        <input id="email" type="text" placeholder="Email">
+        <input id="password" type="password" placeholder="Password">
+        <button id="submit">Submit</button>
+      </div>
     </div>
-    <script src="/Firebase/public/JS/loader1.js "></script>
-    <script type="module" src="/Firebase/public/JS/map.js"></script>
-</body>
+    <script type="module" src="/Firebase/public/JS/login.js"></script>
+  </body>
 </html>
