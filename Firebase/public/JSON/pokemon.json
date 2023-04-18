@@ -2,7 +2,18 @@
     {
         "id":"0",
         "name":"Tiplouf",
-        "image":"640px-Tiplouf-DEPS.png"
+        "image":"Tiplouf-DEPS.png"
+    },
 
+    {
+        "id":"1",
+        "name":"Prinplouf",
+        "image":"Prinplouf-DEPS.png"
+    },
+
+    {
+        "id":"2",
+        "name":"Pingoléon",
+        "image":"Pingoleon-DEPS.png"
     }
 ]
