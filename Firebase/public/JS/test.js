@@ -1,7 +1,3 @@
-import * as L from '../JS/Logs.js';
-import * as Pokemon from '../JS/Pokemon.js';
-import * as D from '../JS/Dresseur.js';
-
 // Import the functions you need from the SDKs you need
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.3/firebase-app.js";
@@ -31,16 +27,8 @@ const qrCodeRequestRef = ref(database, 'qr_code_request');
 // Attach an event listener to the 'value' event on 'qr_code_request' node
 onValue(qrCodeRequestRef, (snapshot) => {
     // Get the value of 'qr_code_request' from the snapshot
-const qrCodeRequestValue = snapshot.val();
+    const qrCodeRequestValue = snapshot.val();
 
-
-
-let Logs = new L.logs();
-
-Logs.defListener();
-// let tiplouf = new Pokemon.pokemon(Logs,0);
-// tiplouf.showPokemon("imPokemon");
-let Dresseur = new D.Dresseur(Logs);
-Dresseur.rencontre(0);
-Dresseur.fuite();
-
+    // Update the value of the 'qr_code_request' element on the page
+    document.getElementById('qr_code_request').innerText = qrCodeRequestValue;
+});
