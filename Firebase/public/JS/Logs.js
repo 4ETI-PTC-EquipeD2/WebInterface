@@ -21,6 +21,7 @@ export class logs extends p.Prompt {
 })
       
     }
+    //Add text to the Logs
     write(text) {
         var logs = document.getElementsByClassName("logs")[0].innerHTML;
         logs+= text

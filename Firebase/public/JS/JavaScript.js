@@ -1,6 +1,10 @@
 import * as L from '../JS/Logs.js';
 import * as Pokemon from '../JS/Pokemon.js';
+import * as D from '../JS/Dresseur.js';
 let Logs = new L.logs();
 Logs.defListener();
-let tiplouf = new Pokemon.pokemon(Logs,0);
-tiplouf.showPokemon("imPokemon");
+// let tiplouf = new Pokemon.pokemon(Logs,0);
+// tiplouf.showPokemon("imPokemon");
+let Dresseur = new D.Dresseur(Logs);
+Dresseur.rencontre(0);
+Dresseur.fuite();

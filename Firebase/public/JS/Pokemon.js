@@ -1,5 +1,6 @@
 export class pokemon{
     constructor(logs,id){
+        this.hp=3;
         this.logs=logs;
         this.id=id;
         this.name="";

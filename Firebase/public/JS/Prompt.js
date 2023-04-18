@@ -16,6 +16,14 @@ export class Prompt{
     pokemon_img.src = img_name;
     }
 
+    clearImage(id){
+        let canvas = document.getElementById(id);
+        let context = canvas.getContext('2d');
+        canvas.width = 800;
+        canvas.height = 1000;
+        context.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
     async loadJson(FichierName,id) { //Function to load JSON zarbi,métamorph,évolie,tortipouss,dracofeu,
         let contenu_json = [];
         await fetch(FichierName)
