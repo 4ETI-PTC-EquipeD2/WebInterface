@@ -32,14 +32,14 @@ const qrCodeRequestRef = ref(database, 'qr_code_request');
 onValue(qrCodeRequestRef, (snapshot) => {
     // Get the value of 'qr_code_request' from the snapshot
 const qrCodeRequestValue = snapshot.val();
-});
-
-
 let Logs = new L.logs();
 
 Logs.defListener();
 // let tiplouf = new Pokemon.pokemon(Logs,0);
 // tiplouf.showPokemon("imPokemon");
 let Dresseur = new D.Dresseur(Logs);
-Dresseur.rencontre(0);
+Dresseur.rencontre(qrCodeRequestValue);
 Dresseur.fuite();
+});
+
+
