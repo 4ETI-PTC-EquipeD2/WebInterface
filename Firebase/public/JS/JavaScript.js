@@ -33,8 +33,7 @@ onValue(qrCodeRequestRef, (snapshot) => {
     const qrCodeRequestValue = snapshot.val();
 
     let Logs = new L.logs();
+    Logs.defListener();
     let tiplouf = new Pokemon.pokemon(Logs,qrCodeRequestValue);
     tiplouf.showPokemon("imPokemon");
 });
-
-Logs.defListener();
