@@ -31,15 +31,16 @@ const qrCodeRequestRef = ref(database, 'qr_code_request');
 // Attach an event listener to the 'value' event on 'qr_code_request' node
 onValue(qrCodeRequestRef, (snapshot) => {
     // Get the value of 'qr_code_request' from the snapshot
-const qrCodeRequestValue = snapshot.val();
-let Logs = new L.logs();
+    const qrCodeRequestValue = snapshot.val();
 
-Logs.defListener();
-// let tiplouf = new Pokemon.pokemon(Logs,0);
-// tiplouf.showPokemon("imPokemon");
-let Dresseur = new D.Dresseur(Logs);
-Dresseur.rencontre(qrCodeRequestValue);
-Dresseur.fuite();
+    let Logs = new L.logs();
+    Logs.defListener();
+
+    let tiplouf = new Pokemon.pokemon(Logs,qrCodeRequestValue);
+    tiplouf.showPokemon("imPokemon");
+    
+    let Dresseur = new D.Dresseur(Logs);
+    Dresseur.rencontre(qrCodeRequestValue);
+    Dresseur.fuite();
 });
-
 
