@@ -32,7 +32,7 @@ const qrCodeRequestRef = ref(database, 'qr_code_request');
 onValue(qrCodeRequestRef, (snapshot) => {
     // Get the value of 'qr_code_request' from the snapshot
 const qrCodeRequestValue = snapshot.val();
-
+}
 
 
 let Logs = new L.logs();
@@ -43,4 +43,3 @@ Logs.defListener();
 let Dresseur = new D.Dresseur(Logs);
 Dresseur.rencontre(0);
 Dresseur.fuite();
-
