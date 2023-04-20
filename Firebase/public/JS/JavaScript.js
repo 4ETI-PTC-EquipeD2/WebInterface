@@ -37,10 +37,10 @@ onValue(qrCodeRequestRef, (snapshot) => {
     Logs.defListener();
 
     let tiplouf = new Pokemon.pokemon(Logs,qrCodeRequestValue);
-    tiplouf.showPokemon("imPokemon");
+    // tiplouf.showPokemon("imPokemon");
     
     let Dresseur = new D.Dresseur(Logs);
     Dresseur.rencontre(qrCodeRequestValue);
-    Dresseur.fuite();
+    // Dresseur.fuite();
 });
 

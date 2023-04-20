@@ -21,7 +21,7 @@ export class pokemon{
         console.log(this.id)
         console.log(img_name)
         this.logs.drawImages(id_canvas,img_name);
-        var text="<br>" + this.name + " has appeared!"
+        var text="<br>" + this.name + " est apparu!"
         this.logs.write(text)
     }
     
