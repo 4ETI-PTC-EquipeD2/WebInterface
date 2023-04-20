@@ -4,6 +4,10 @@
     "points": {
       ".write": true,
       ".read": true
+    },
+    "qr_code_request": {
+      ".read": true,
+      ".write": true
     }
   }
 }
