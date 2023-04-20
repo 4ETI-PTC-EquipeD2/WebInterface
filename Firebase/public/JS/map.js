@@ -100,60 +100,6 @@ if (window.location.pathname.includes('home.html')) {
     document.getElementById('saveButtonId').addEventListener('click', () => {
         savePointsToFirebase(points);
     });
-
-    function loadPointsFromFirebase(key) {
-        // Retrieve the points from the database using the provided key
-        const pointsRef = ref(database, 'points/' + key);
-        get(pointsRef).then((snapshot) => {
-            if (snapshot.exists()) {
-                const data = snapshot.val();
-
-                // Clear the canvas
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-                // Recreate the path using the loaded points
-                const loadedPoints = data.points;
-                path = new Path2D();
-                for (let i = 0; i < loadedPoints.length; i++) {
-                    if (i === 0) {
-                        path.moveTo(loadedPoints[i].x, loadedPoints[i].y);
-                    } else {
-                        path.lineTo(loadedPoints[i].x, loadedPoints[i].y);
-                    }
-                }
-                ctx.strokeStyle = "black";
-                ctx.stroke(path);
-            } else {
-                console.log("No data available");
-            }
-        }).catch((error) => {
-            console.error('Error loading points:', error);
-        });
-    }
-
-    // // Attach the loadPointsFromFirebase function to the button click event
-    // document.getElementById('loadButtonId').addEventListener('click', () => {
-    //     const key = document.getElementById("keysList").value;
-    //     loadPointsFromFirebase(key);
-    // });
-
-    async function populateKeysList() {
-        const pointsRef = ref(database, 'points');
-        const snapshot = await get(pointsRef);
-        const keysList = document.getElementById("keysList");
-
-        if (snapshot.exists()) {
-            const data = snapshot.val();
-            for (const key in data) {
-                const option = document.createElement("option");
-                option.value = key;
-                option.text = key;
-                keysList.add(option);
-            }
-        } else {
-            console.log("No data available");
-        }
-    }
 }
 
 if (window.location.pathname.includes('historique.html')){
@@ -161,8 +107,8 @@ if (window.location.pathname.includes('historique.html')){
         // create a new canvas element for this set of points
         var canvas = document.createElement("canvas");
         canvas.classList.add("canvas-map")
-        canvas.width = 400;
-        canvas.height = 200;
+        canvas.width = 300;
+        canvas.height = 145;
         
         // get the context for the canvas
         var ctx = canvas.getContext("2d");
@@ -195,24 +141,28 @@ if (window.location.pathname.includes('historique.html')){
     function loadPointsFromFirebase() {
         // get a reference to the points in the database
         const pointsRef = ref(database, "points");
-        
+      
         // listen for changes to the points
         onValue(pointsRef, (snapshot) => {
-            // get the data for all the points
-            const pointsData = snapshot.val();
-        
-            // check if there are any points
-            if (!pointsData) {
+          // get the data for all the points
+          const pointsData = snapshot.val();
+      
+          // check if there are any points
+          if (!pointsData) {
             console.log("No points available.");
             return;
-            }
-        
-            // loop over the points and display them
-            Object.keys(pointsData).forEach((key) => {
+          }
+      
+          // clear the pointsContainer div
+          var pointsContainer = document.getElementById("pointsContainer");
+          pointsContainer.innerHTML = "";
+      
+          // loop over the points and display them
+          Object.keys(pointsData).forEach((key) => {
             displayPoints(pointsData[key]);
-            });
+          });
         });
-        }      
+      }      
       
     // Call the displayPoints function when the page loads
     window.addEventListener("load", loadPointsFromFirebase);
