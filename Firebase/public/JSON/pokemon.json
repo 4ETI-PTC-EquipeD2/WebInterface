@@ -1,19 +1,190 @@
 [
     {
-        "id":"0",
-        "name":"Tiplouf",
-        "image":"Tiplouf-DEPS.png"
+        "id": "0",
+        "name": "Tiplouf",
+        "image": "Piplup.png",
+        "interactions": {
+            "1": "Charge",
+            "2": "Écume",
+            "3": "Aéropique",
+            "4": "Damoclès"
+        }
     },
-
     {
-        "id":"1",
-        "name":"Prinplouf",
-        "image":"Prinplouf-DEPS.png"
+        "id": "1",
+        "name": "Ouisticram",
+        "image": "Chimchar.png",
+        "interactions": {
+            "1": "Flammeche",
+            "2": "Griffe",
+            "3": "Roulade",
+            "4": "Nitrocharge"
+        }
     },
-
     {
-        "id":"2",
-        "name":"Pingoléon",
-        "image":"Pingoleon-DEPS.png"
+        "id": "2",
+        "name": "Tortipouss",
+        "image": "Turtwig.png",
+        "interactions": {
+            "1": "Tranch'herbe",
+            "2": "Mimi-queue",
+            "3": "Charge",
+            "4": "Vive-attaque"
+        }
+    },
+    {
+        "id": "3",
+        "name": "Pikachu",
+        "image": "Pikachu.png",
+        "interactions": {
+            "1": "Éclair",
+            "2": "Foudre",
+            "3": "Queue de fer",
+            "4": "Vive-attaque"
+        }
+    },
+    {
+        "id": "4",
+        "name": "Salamèche",
+        "image": "Charmander.png",
+        "interactions": {
+            "1": "Flammèche",
+            "2": "Griffe",
+            "3": "Danse flammes",
+            "4": "Queue de fer"
+        }
+    },
+    {
+        "id": "5",
+        "name": "Bulbizarre",
+        "image": "Bulbasaur.png",
+        "interactions": {
+            "1": "Tranch'herbe",
+            "2": "Charge",
+            "3": "Vampigraine",
+            "4": "Mimi-queue"
+        }
+    },
+    {
+        "id": "6",
+        "name": "Dracaufeu",
+        "image": "Charizard.png",
+        "interactions": {
+            "1": "Flammèche",
+            "2": "Lance-flammes",
+            "3": "Crocs feu",
+            "4": "Tranche"
+        }
+    },
+    {
+        "id": "7",
+        "name": "Carapuce",
+        "image": "Squirtle.png",
+        "interactions": {
+            "1": "Pistolet à eau",
+            "2": "Charge",
+            "3": "Coup d' tête",
+            "4": "Vive-attaque"
+        }
+    },
+    {
+        "id": "8",
+        "name": "Rondoudou",
+        "image": "Jigglypuff.png",
+        "interactions": {
+            "1": "Charme",
+            "2": "Écho",
+            "3": "Ball'Ombre",
+            "4": "Dernier recours"
+        }
+    },
+    {
+        "id":"9",
+        "name":"Psykokwak",
+        "image":"Psyduck.png",
+        "interactions":{
+            "1":"Pistolet à O",
+            "2":"Ultrason",
+            "3":"Écras'Face",
+            "4":"Danse Pluie"
+        }
+    },
+    {
+        "id": "10",
+        "name": "Pachirisu",
+        "image": "Pachirisu.png",
+        "interactions": {
+            "1": "Éclair",
+            "2": "Charge",
+            "3": "Poursuite",
+            "4": "Croco Larme"
+        }
+    },
+    {
+        "id": "11",
+        "name": "Lokhlass",
+        "image": "Lapras.png",
+        "interactions": {
+            "1": "Rayon de Glace",
+            "2": "Hydrocanon",
+            "3": "Laser Glace",
+            "4": "Blizzard"
+        }
+    },
+    {
+        "id": "12",
+        "name": "Mew",
+        "image": "Mew.png",
+        "interactions": {
+            "1": "Choc Mental",
+            "2": "Mega Punch",
+            "3": "Psyko",
+            "4": "Tonnerre"
+        }
+    },
+    {
+        "id": "13",
+        "name": "Mewtwo",
+        "image": "Mewtwo.png",
+        "interactions": {
+            "1": "Frappe Psy",
+            "2": "Psykoud'Boul",
+            "3": "Ball'Ombre",
+            "4": "Psyko"
+        }
+    },
+    {
+        "id": "14",
+        "name": "Scorplane",
+        "image": "Gliscor.png",
+        "interactions": {
+            "1": "Coup d'jus",
+            "2": "Ailes d'acier",
+            "3": "Mâchouille",
+            "4": "Piqûre"
+            }
+    },
+    {
+        "id": "15",
+        "name": "Rayquaza",
+        "image": "Rayquaza.png",
+        "interactions": {
+            "1": "Crocs givre",
+            "2": "Fatal-Foudre",
+            "3": "Dracogriffe",
+            "4": "Ouragan"
+        }
+    },
+    {
+        "id": "16",
+        "name": "Démanta",
+        "image": "Mantine.png",
+        "interactions": {
+            "1": "Tornade",
+            "2": "Lame d'air",
+            "3": "Bulles d'O",
+            "4": "Soin"
+        }
     }
 ]
+                
