@@ -33,6 +33,7 @@ export class Prompt{
             .then(function (json) {
                 contenu_json = json;
             })
+        console.log(contenu_json[id],"Pourtant ça devrait?")
         return contenu_json[id];
     }
 }

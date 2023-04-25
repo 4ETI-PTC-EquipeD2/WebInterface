@@ -1,7 +1,9 @@
 import * as poke from './Pokemon.js';
+
 //Class representing the robot. He can encounter pokemon and then realise actien on them.
 export class Dresseur{
-    constructor(Logs){
+    constructor(Logs,database){
+        this.database=
         this.hp=3;
         this.logs=Logs;
         this.encounter=null;
@@ -30,7 +32,7 @@ export class Dresseur{
         //Enlever des hp
         }
         else{
-            this.logs.write("Il n'y a pas de pokémons...")
+            this.logs.write("Il n'y a pas de pokémons...");
         }
     }
     capturer(){ //Fonction asscoiée au boutton capturer
@@ -42,7 +44,7 @@ export class Dresseur{
         //TODO
         }
         else{
-            this.logs.write("Il n'y a pas de pokémons...")
+            this.logs.write("Il n'y a pas de pokémons...");
         }
     }
     
