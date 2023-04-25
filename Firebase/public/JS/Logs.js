@@ -36,7 +36,7 @@ export class logs extends p.Prompt {
         }
     }
 
-    addListenerCombat(boutton,listeCombat){
+    addListenerCombat(boutton,listeCombat){ //Fonction qui ajoute un listener
         listeCombat[boutton].addEventListener("click", (event) => {
             switch (boutton) {
                 case 4:

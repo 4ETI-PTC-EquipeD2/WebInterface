@@ -16,7 +16,7 @@ export class Prompt{
     pokemon_img.src = img_name;
     }
 
-    clearImage(id){
+    clearImage(id){ //Fonction qui clear le canvas
         let canvas = document.getElementById(id);
         let context = canvas.getContext('2d');
         canvas.width = 800;

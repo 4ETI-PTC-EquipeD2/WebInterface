@@ -7,11 +7,11 @@ export class Dresseur{
         this.encounter=null;
         this.logs.addDresseur(this);
     }
-    rencontre(id){
+    rencontre(id){ //Fonction qui gère la rencontre d'un pokemon
         this.encounter = new poke.pokemon(this.logs,id);
         this.encounter.showPokemon("imPokemon");
     }
-    fuite(){
+    fuite(){ //Fonction asscoiée au boutton fuite
         if(this.encounter!=null){
             let text="Vous fuyez " + this.encounter.name;
             this.logs.write(text);
@@ -22,7 +22,7 @@ export class Dresseur{
             this.logs.write("Il n'y a pas de pokémons...")
         }
     }
-    attaque(idAttaque){
+    attaque(idAttaque){ //Fonction asscoiée au boutton attaque
         if(this.encounter!=null){
             let text="Vous utilisez "+idAttaque+" " + this.encounter.name;
             this.logs.write(text);
@@ -33,7 +33,7 @@ export class Dresseur{
             this.logs.write("Il n'y a pas de pokémons...")
         }
     }
-    capturer(){
+    capturer(){ //Fonction asscoiée au boutton capturer
         if(this.encounter!=null){
             let text="Vous capturez "+ this.encounter.name;
             this.logs.write(text);
