@@ -12,16 +12,38 @@ export class Dresseur{
         this.encounter.showPokemon("imPokemon");
     }
     fuite(){
-        let text="Vous fuyez " + this.encounter.name;
-        this.logs.write(text);
-        this.logs.clearImage("imPokemon");
-        this.encounter=null;
+        if(this.encounter!=null){
+            let text="Vous fuyez " + this.encounter.name;
+            this.logs.write(text);
+            this.logs.clearImage("imPokemon");
+            this.encounter=null;
+        }
+        else{
+            this.logs.write("Il n'y a pas de pokémons...")
+        }
     }
-    attaque(){
-        let text="Vous attaquez " + this.encounter.name;
-        this.logs.write(text);
-        this.logs.clearImage("imPokemon")
+    attaque(idAttaque){
+        if(this.encounter!=null){
+            let text="Vous utilisez "+idAttaque+" " + this.encounter.name;
+            this.logs.write(text);
+            this.logs.clearImage("imPokemon");
         //Enlever des hp
+        }
+        else{
+            this.logs.write("Il n'y a pas de pokémons...")
+        }
+    }
+    capturer(){
+        if(this.encounter!=null){
+            let text="Vous capturez "+ this.encounter.name;
+            this.logs.write(text);
+            this.logs.clearImage("imPokemon");
+            this.encounter=null;
+        //TODO
+        }
+        else{
+            this.logs.write("Il n'y a pas de pokémons...")
+        }
     }
     
 }

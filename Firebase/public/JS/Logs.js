@@ -25,8 +25,35 @@ export class logs extends p.Prompt {
                 console.log("Oui");
             }
         })
-   
+        console.log("oui");
+        var listeCombat = document.getElementsByClassName("interfaceCombat");
+        console.log("len",listeCombat.length)
+        for (let boutton=0; boutton<listeCombat.length; boutton++){
+            console.log(listeCombat);
+            console.log("Avant: ",this.dresseur)
+            this.addListenerCombat(boutton,listeCombat);
+            
+        }
     }
+
+    addListenerCombat(boutton,listeCombat){
+        listeCombat[boutton].addEventListener("click", (event) => {
+            switch (boutton) {
+                case 4:
+                    console.log("Après: ",this.dresseur)
+                    this.dresseur.capturer();
+                    break;
+                case 5:
+                    this.dresseur.fuite();
+                    break;
+                default:
+                    this.dresseur.attaque(boutton);
+                    break;                        
+            }
+        })
+    }
+   
+    
     analyseCommande(commande){
         commande=commande.split('_')
         console.log(commande)
