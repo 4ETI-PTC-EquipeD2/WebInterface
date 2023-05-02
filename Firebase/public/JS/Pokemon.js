@@ -10,7 +10,7 @@ export class pokemon{
 
     async load(){ // Load the JSON, and add his values to the this.name, and this.img parameters
         let contenu_json= await this.logs.loadJson("../JSON/pokemon.json",this.id);
-        console.log(contenu_json)
+        console.log(contenu_json,"Contenu_JSON")
         this.name=contenu_json["name"]
         this.img=contenu_json["image"]
     }

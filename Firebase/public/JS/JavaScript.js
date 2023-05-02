@@ -2,6 +2,7 @@ import * as L from '../JS/Logs.js';
 import * as Pokemon from '../JS/Pokemon.js';
 import * as D from '../JS/Dresseur.js';
 
+
 // Import the functions you need from the SDKs you need
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.3/firebase-app.js";
@@ -32,15 +33,11 @@ const qrCodeRequestRef = ref(database, 'qr_code_request');
 onValue(qrCodeRequestRef, (snapshot) => {
     // Get the value of 'qr_code_request' from the snapshot
     const qrCodeRequestValue = snapshot.val();
-
     let Logs = new L.logs();
-    
-
-    let tiplouf = new Pokemon.pokemon(Logs,qrCodeRequestValue);
     // tiplouf.showPokemon("imPokemon");
-    
-    let Dresseur = new D.Dresseur(Logs);
+    let Dresseur = new D.Dresseur(Logs,database);
     Logs.defListener();
+    let tiplouf = new Pokemon.pokemon(Logs,qrCodeRequestValue);
     Dresseur.rencontre(qrCodeRequestValue);
     // Dresseur.fuite();
 });
