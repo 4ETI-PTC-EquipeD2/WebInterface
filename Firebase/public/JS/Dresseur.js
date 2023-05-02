@@ -9,6 +9,7 @@ export class Dresseur{
         this.logs=Logs;
         this.encounter=null;
         this.logs.addDresseur(this);
+        this.tabAttaque=["Vive-attaque","Gros yeux","Qoeud de fer","Hurlement"]
     }
     rencontre(id){ //Fonction qui gère la rencontre d'un pokemon
         this.encounter = new poke.pokemon(this.logs,id);
@@ -28,10 +29,11 @@ export class Dresseur{
     }
     attaque(idAttaque){ //Fonction asscoiée au boutton attaque
         if(this.encounter!=null){
-            let text="Vous utilisez "+idAttaque+" " + this.encounter.name;
+            let text="Vous utilisez "+this.tabAttaque[idAttaque]+" " + this.encounter.name;
             this.updateAttaque(idAttaque)
             this.logs.write(text);
-            this.logs.clearImage("imPokemon");
+            this.encounter.hp-=1;
+            console.log(this.encounter.hp)
         //Enlever des hp
         }
         else{
@@ -52,7 +54,7 @@ export class Dresseur{
         }
     }
 
-    updateAttaque(idAttaque){
+    updateAttaque(idAttaque){// Fonction qui met à jours sur la bdd firebase la valeur de "attaque" qui est des 0 à 3 pour les attaque, 4 pour la capture et 5 pour la fuite. -1 correspond à une valeur non attribuée.
         set(ref(this.db, 'action/'),{'attaque':idAttaque})
             .then(() => {
                 console.log('Points saved successfully.');
