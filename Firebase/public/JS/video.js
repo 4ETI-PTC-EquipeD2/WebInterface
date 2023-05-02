@@ -15,17 +15,21 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
-if (window.location.pathname.includes('test.html')) {
+if (window.location.pathname.includes('home.html')) {
+    console.log("Video en cours");
     var videoPlayer = document.getElementById('video-player');
     const dbRef = ref(database, "video");
 
-    onValue(dbRef, (snapshot) => {
-        var data = snapshot.val();
-        if (data) {
-            var lastKey = Object.keys(data).pop(); // Get the last key in the data object
-            var frame_base64 = data[lastKey].frame;
-            var url = 'data:image/jpeg;base64,' + frame_base64;
-            videoPlayer.src = url;
-        }
-    });
+    function displayFrame() {
+        onValue(dbRef, (snapshot) => {
+            var data = snapshot.val();
+            if (data) {
+                var lastKey = Object.keys(data).pop(); // Get the last key in the data object
+                var frame_base64 = data[lastKey].frame;
+                var url = 'data:image/jpeg;base64,' + frame_base64;
+                videoPlayer.src = url;
+            }
+        });
+    }
+    displayFrame();
 }
