@@ -11,7 +11,9 @@
             <header></header>
         </div>
         <div class="main">
-            <div class="live-video"></div>
+            <div class="live-video">
+                <img id="video-player" width="576" height="432">
+            </div>
             <div class="map">
                 <canvas class='canvas_map' id="mapCanvas"></canvas>
                 <button class="save-button" id="saveButtonId">Save</button>
@@ -19,18 +21,6 @@
         </div>
         <div class="prompt">
             <div class="console">
-                <div class="combat">
-                    <div class="attaques">
-                        <button class="interfaceCombat" id="Attaque1">Vive-attaque</button>
-                        <button class="interfaceCombat" id="Attaque2">Gros yeux</button>
-                        <button class="interfaceCombat" id="Attaque3">Qoeud de fer</button>
-                        <button class="interfaceCombat" id="Attaque4">Attaque 4</button>
-                    </div>
-                    <div class="utilty">
-                        <button class="interfaceCombat">Capturer</button>
-                        <button class="interfaceCombat">Fuite</button>
-                    </div>
-                </div>
                 <div class="divLogs">
                     <p class="logs"> 
                         Bienvenue sur l'interface web du pokebot!
@@ -38,6 +28,18 @@
                 </div> 
                 <div class="command">
                     <input type="text" placeholder="Type your command" required id="commandLine">
+                </div>
+            </div>
+            <div class="combat">
+                <div class="attaques">
+                    <button class="interfaceCombat">Vive-attaque</button>
+                    <button class="interfaceCombat">Gros yeux</button>
+                    <button class="interfaceCombat">Qoeud de fer</button>
+                    <button class="interfaceCombat">Attaque 4</button>
+                </div>
+                <div class="utilty">
+                    <button class="interfaceCombat">Capturer</button>
+                    <button class="interfaceCombat">Fuite</button>
                 </div>
             </div>
             <div class="display-image">
@@ -48,5 +50,6 @@
     <script src="../JS/loader.js "></script>
     <script type="module" src="../JS/map.js"></script>
     <script type="module" src="../JS/JavaScript.js"></script>
+    <script type="module" src="../JS/video.js"></script>
 </body>
 </html>
