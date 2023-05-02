@@ -8,6 +8,14 @@
     "qr_code_request": {
       ".read": true,
       ".write": true
+    },
+    "action": {
+      ".read": true,
+      ".write": true
+    },
+    "video": {
+      ".read": true,
+      ".write": true
     }
   }
 }
