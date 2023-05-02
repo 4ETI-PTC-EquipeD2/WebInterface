@@ -4,7 +4,6 @@ export class Prompt{
     }
     drawImages(id, img_name) { //Function that draw the given image name int the canvas of given id.
     let pokemon_img = new Image();
-    console.log(id,"canvas_id")
     pokemon_img.onload = () => {
         let canvas = document.getElementById(id);
         let context = canvas.getContext('2d');
@@ -33,7 +32,6 @@ export class Prompt{
             .then(function (json) {
                 contenu_json = json;
             })
-        console.log(contenu_json[id],"Pourtant ça devrait?")
         return contenu_json[id];
     }
 }

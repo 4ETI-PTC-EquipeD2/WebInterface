@@ -11,7 +11,11 @@ function loader() {
             a.classList.add('active');
         }
         });
+
+        // Dispatch a custom event when the header content is loaded
+        const headerLoadedEvent = new Event('headerLoaded');
+        document.dispatchEvent(headerLoadedEvent);
     });
 }
-  
+
 document.addEventListener('DOMContentLoaded', loader);

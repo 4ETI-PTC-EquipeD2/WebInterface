@@ -16,6 +16,10 @@
     "video": {
       ".read": true,
       ".write": true
+    },
+    "video_state": {
+      ".read": true,
+      ".write": true
     }
   }
 }
