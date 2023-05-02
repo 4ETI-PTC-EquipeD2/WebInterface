@@ -190,3 +190,18 @@ nav a:hover {
     color: #fff;
     cursor: pointer;
 }
+
+.live-video {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#video-player {
+    width: 100%;
+    max-width: 576px;
+    max-height: 432px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
