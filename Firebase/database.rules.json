@@ -20,6 +20,10 @@
     "video_state": {
       ".read": true,
       ".write": true
+    },
+    "action_id": {
+      ".read": true,
+      ".write": true
     }
   }
 }
