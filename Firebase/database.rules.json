@@ -24,6 +24,10 @@
     "action_id": {
       ".read": true,
       ".write": true
+    },
+    "map_movement": {
+      ".read": true,
+      ".write": true
     }
   }
 }
