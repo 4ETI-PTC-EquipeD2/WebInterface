@@ -58,6 +58,6 @@ def send_obstacle(position, game_id):
     ref.child('obstacles').push(position)
 
 # Test the function
-# send_movement(3, 'test')
+send_movement(1, 'test4')
 
-send_obstacle([2, 4], 'test')
+# send_obstacle([0, 0], 'test2')

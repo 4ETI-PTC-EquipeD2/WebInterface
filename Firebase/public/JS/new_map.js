@@ -193,6 +193,10 @@ if (window.location.pathname.includes('home.html')) {
         }
     }
 
+    function reset() {
+        // Clear the canvas by deleting the old points and initializing the path
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
 
     // Call the listenForObstacles function
     listenForObstacles();
@@ -202,65 +206,157 @@ if (window.location.pathname.includes('home.html')) {
 }
 
 if (window.location.pathname.includes('historique.html')){
+    const cellSize = 50;  // to match the size of the cells in the other map
 
-    function displayGrids(gridData) {
-        // create a new canvas element for this grid
+    async function displayGame(gameId) {
+        // get the movements and obstacles for this game
+        const movementsRef = ref(database, `map_movement/${gameId}/movements`);
+        const obstaclesRef = ref(database, `map_movement/${gameId}/obstacles`);
+
+        const [movementsSnapshot, obstaclesSnapshot] = await Promise.all([
+            get(movementsRef),
+            get(obstaclesRef),
+        ]);
+
+        const movements = movementsSnapshot.val();
+        const obstacles = obstaclesSnapshot.val();
+
+        // create a new canvas element for this set of movements
         var canvas = document.createElement("canvas");
-        canvas.classList.add("canvas-map")
-        canvas.width = 300;
-        canvas.height = 145;
-        
+        canvas.classList.add("canvas-map");
+
         // get the context for the canvas
         var ctx = canvas.getContext("2d");
-    
-        // clear the canvas
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // loop over the movements and draw them
-        var movements = gridData.movements;
-        for (var i = 0; i < movements.length; i++) {
-            // draw line or point
-            // consider using similar logic to your "listenForMovements" function
+        // create a new path for the movements
+        var path = new Path2D();
+        var x = cellSize / 2;
+        var y = canvas.height + 5*(cellSize / 2);
+
+        canvas.width = 4 * cellSize;
+        canvas.height = 6 * cellSize;
+
+        // Draw a red circle at the starting position
+        ctx.beginPath();
+        ctx.arc(x, y, cellSize / 4, 0, 2*Math.PI);
+        ctx.fillStyle = "red";
+        ctx.fill();
+
+        // Function to draw the grid on the canvas
+        function drawGrid() {
+            ctx.beginPath();
+            for (var i = 0; i <= canvas.width; i += cellSize) {
+                ctx.moveTo(i, 0);
+                ctx.lineTo(i, canvas.height);
+            }
+            for (var j = 0; j <= canvas.height; j += cellSize) {
+                ctx.moveTo(0, j);
+                ctx.lineTo(canvas.width, j);
+            }
+            ctx.strokeStyle = "lightgray";
+            ctx.stroke();
         }
 
-        // loop over the obstacles and draw them
-        var obstacles = gridData.obstacles;
-        for (var i = 0; i < obstacles.length; i++) {
-            // draw obstacle
-            // consider using similar logic to your "drawObstacle" function
+        // Draw the grid on the canvas
+        drawGrid();
+
+        // Initialize an array to store the points
+        var points = [];
+
+        // loop over the movements and add them to the path
+        Object.keys(movements).forEach((key, i) => {
+            if (i === 0) {
+                path.moveTo(x, y);
+            }
+
+            switch (movements[key]) {
+                case 1: // Move up
+                    y -= cellSize;
+                    break;
+                case 2: // Move down
+                    y += cellSize;
+                    break;
+                case 3: // Move left
+                    x -= cellSize;
+                    break;
+                case 4: // Move right
+                    x += cellSize;
+                    break;
+            }
+            path.lineTo(x, y);
+
+            // Add the new point to the points array
+            points.push({x: x, y: y});
+
+            // Draw a circle at the new position
+            ctx.beginPath();
+            ctx.arc(x, y, cellSize / 4, 0, 2*Math.PI);
+            ctx.fillStyle = "black";
+            ctx.fill();
+        });
+
+        // Draw a green circle at the last position
+        ctx.beginPath();
+        const lastPoint = points[points.length - 1];
+        ctx.arc(lastPoint.x, lastPoint.y, cellSize / 4, 0, 2*Math.PI);
+        ctx.fillStyle = "green";
+        ctx.fill();
+
+        // draw the path on the canvas
+        ctx.strokeStyle = "black";
+        ctx.stroke(path);
+
+        // draw the obstacles if there are any
+        if (obstacles) {
+            Object.keys(obstacles).forEach((key) => {
+                const [obstacleX, obstacleY] = obstacles[key];
+                const obstacleCenterX = (obstacleX + 0.5) * cellSize;
+                const obstacleCenterY = (obstacleY + 0.5) * cellSize;
+
+                // Draw a cross as the obstacle
+                ctx.beginPath();
+                ctx.moveTo(obstacleCenterX - cellSize / 4, obstacleCenterY - cellSize / 4);
+                ctx.lineTo(obstacleCenterX + cellSize / 4, obstacleCenterY + cellSize / 4);
+                ctx.moveTo(obstacleCenterX - cellSize / 4, obstacleCenterY + cellSize / 4);
+                ctx.lineTo(obstacleCenterX + cellSize / 4, obstacleCenterY - cellSize / 4);
+                ctx.strokeStyle = "red";
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            });
         }
-    
-        // add the canvas to the gridContainer div
-        var gridContainer = document.getElementById("gridContainer");
-        gridContainer.appendChild(canvas);
+
+        // create a container for the game
+        var gameContainer = document.createElement("div");
+        gameContainer.classList.add("game-container");
+
+        // create a title element for the game
+        var title = document.createElement("h2");
+        title.textContent = `Run: ${gameId}`;
+        gameContainer.appendChild(title);
+
+        gameContainer.appendChild(canvas);
+
+        // add the game container to the pointsContainer div
+        var pointsContainer = document.getElementById("pointsContainer");
+        pointsContainer.appendChild(gameContainer);
     }
 
-    function loadGridsFromFirebase() {
-        // get a reference to the grids in the database
-        const gridsRef = ref(database, "map_movement");
-      
-        // listen for changes to the grids
-        onValue(gridsRef, (snapshot) => {
-            // get the data for all the grids
-            const gridData = snapshot.val();
-        
-            // check if there are any grids
-            if (!gridData) {
-                console.log("No grids available.");
-                return;
-            }
-      
-            // clear the gridContainer div
-            var gridContainer = document.getElementById("gridContainer");
-            gridContainer.innerHTML = "";
-      
-            // loop over the grids and display them
-            Object.keys(gridData).forEach((key) => {
-                displayGrids(gridData[key]);
-            });
+    async function loadGamesFromFirebase() {
+        // get a reference to the map_movement node in the database
+        const mapMovementRef = ref(database, 'map_movement');
+
+        // get the data for the map_movement node
+        const snapshot = await get(mapMovementRef);
+
+        // get the value of the data
+        const data = snapshot.val();
+
+        // loop over the games and display each one
+        Object.keys(data).forEach(gameId => {
+            displayGame(gameId);
         });
-    }      
-      
-    // Call the loadGridsFromFirebase function when the page loads
-    window.addEventListener("load", loadGridsFromFirebase);
+    }
+
+    // call loadGamesFromFirebase when the page loads
+    window.onload = loadGamesFromFirebase;
 }
