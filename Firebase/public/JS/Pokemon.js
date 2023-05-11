@@ -24,5 +24,13 @@ export class pokemon{
         var text=this.name + " est apparu!"
         this.logs.write(text)
     }
-    
+
+    perdHp(){
+        if(this.hp<2){
+            return false
+        }
+        this.hp-=1;
+        console.log("HP: ",this.hp);
+        return true;
+    } 
 }
