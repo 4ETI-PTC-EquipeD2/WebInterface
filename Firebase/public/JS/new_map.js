@@ -21,7 +21,7 @@ const app = initializeApp(firebaseConfig);
 // Get a reference to your Firebase Realtime Database
 const database = getDatabase(app);
 
-if (window.location.pathname.includes('test.html')) {
+if (window.location.pathname.includes('home.html')) {
 
     // Get the canvas element and set its dimensions for a 6x4 grid
     var canvas = document.getElementById("mapCanvas");
@@ -162,7 +162,7 @@ if (window.location.pathname.includes('test.html')) {
     // Function to draw obstacles
     function drawObstacle(obstacleX, obstacleY) {
         var obstacleCenterX = (obstacleX + 0.5) * cellSize;
-        var obstacleCenterY = ((5-obstacleY) - 0.5) * cellSize;
+        var obstacleCenterY = (obstacleY + 0.5) * cellSize;
         
         // Draw a cross as the obstacle
         ctx.beginPath();
@@ -201,3 +201,66 @@ if (window.location.pathname.includes('test.html')) {
     listenForMovements();
 }
 
+if (window.location.pathname.includes('historique.html')){
+
+    function displayGrids(gridData) {
+        // create a new canvas element for this grid
+        var canvas = document.createElement("canvas");
+        canvas.classList.add("canvas-map")
+        canvas.width = 300;
+        canvas.height = 145;
+        
+        // get the context for the canvas
+        var ctx = canvas.getContext("2d");
+    
+        // clear the canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // loop over the movements and draw them
+        var movements = gridData.movements;
+        for (var i = 0; i < movements.length; i++) {
+            // draw line or point
+            // consider using similar logic to your "listenForMovements" function
+        }
+
+        // loop over the obstacles and draw them
+        var obstacles = gridData.obstacles;
+        for (var i = 0; i < obstacles.length; i++) {
+            // draw obstacle
+            // consider using similar logic to your "drawObstacle" function
+        }
+    
+        // add the canvas to the gridContainer div
+        var gridContainer = document.getElementById("gridContainer");
+        gridContainer.appendChild(canvas);
+    }
+
+    function loadGridsFromFirebase() {
+        // get a reference to the grids in the database
+        const gridsRef = ref(database, "map_movement");
+      
+        // listen for changes to the grids
+        onValue(gridsRef, (snapshot) => {
+            // get the data for all the grids
+            const gridData = snapshot.val();
+        
+            // check if there are any grids
+            if (!gridData) {
+                console.log("No grids available.");
+                return;
+            }
+      
+            // clear the gridContainer div
+            var gridContainer = document.getElementById("gridContainer");
+            gridContainer.innerHTML = "";
+      
+            // loop over the grids and display them
+            Object.keys(gridData).forEach((key) => {
+                displayGrids(gridData[key]);
+            });
+        });
+    }      
+      
+    // Call the loadGridsFromFirebase function when the page loads
+    window.addEventListener("load", loadGridsFromFirebase);
+}

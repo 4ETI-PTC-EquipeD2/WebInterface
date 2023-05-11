@@ -60,4 +60,4 @@ def send_obstacle(position, game_id):
 # Test the function
 # send_movement(3, 'test')
 
-send_obstacle([1, 2], 'test')
+send_obstacle([2, 4], 'test')
