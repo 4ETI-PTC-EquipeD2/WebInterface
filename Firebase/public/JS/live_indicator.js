@@ -15,29 +15,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
-function displayFrame() {
-    if (window.location.pathname.includes('home.html')) {
-        var videoPlayer = document.getElementById('video-player');
-        const dbRef = ref(database, "video");
-        onValue(dbRef, (snapshot) => {
-            var data = snapshot.val();
-            if (data) {
-                var lastKey = Object.keys(data).pop(); // Get the last key in the data object
-                var frame_base64 = data[lastKey].frame;
-                var url = 'data:image/jpeg;base64,' + frame_base64;
-                videoPlayer.src = url;
-            }
-        });
-    }
-}
-
-function displayWaitForLive() {
-    if (window.location.pathname.includes('home.html')) {
-        var videoPlayer = document.getElementById('video-player');
-        videoPlayer.src = '../IMG/mire.png';
-    }
-}
-
 function updateLiveIndicator() {
     if (window.location.pathname.includes('home.html')) {
         // Get a reference to the video state
@@ -51,10 +28,9 @@ function updateLiveIndicator() {
         onValue(videoStateRef, (snapshot) => {
             const videoState = snapshot.val();
             if (videoState === 1) {
-                displayFrame();
+                console.log(liveDot);
                 liveDot.style.opacity = 1;
             } else {
-                displayWaitForLive();
                 liveDot.style.opacity = 0;
             }
         });

@@ -13,7 +13,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100vh;
 }
 
 .Header {
@@ -57,7 +56,6 @@ nav a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 70px);
 }
 
 .canvas-map {
@@ -70,9 +68,14 @@ nav a:hover {
 }
 
 #pointsContainer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    justify-items: center;
+}
+
+#pointsContainer h2 {
+    text-align: center;
 }
 
 /* Media queries */

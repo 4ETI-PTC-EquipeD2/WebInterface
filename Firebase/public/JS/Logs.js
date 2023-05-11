@@ -8,7 +8,6 @@ export class logs extends p.Prompt {
         this.dresseur=Dresseur;
     }
     defListener(){
-        console.log(this,"thisd");
         var divCommand = document.getElementsByClassName("command")[0];
         divCommand.addEventListener("keypress", (event) => {
         // Function to enter command
@@ -17,22 +16,15 @@ export class logs extends p.Prompt {
                 // Cancel the default action, if needed
                 let commande = document.getElementById("commandLine").value;
                 let text="-"+commande;
-                console.log(event.key,"Key");
                 event.preventDefault();
                 this.write(text);
                 this.analyseCommande(commande);
                 document.getElementById("commandLine").value = "";
-                console.log("Oui");
             }
         })
-        console.log("oui");
         var listeCombat = document.getElementsByClassName("interfaceCombat");
-        console.log("len",listeCombat.length)
         for (let boutton=0; boutton<listeCombat.length; boutton++){
-            console.log(listeCombat);
-            console.log("Avant: ",this.dresseur)
             this.addListenerCombat(boutton,listeCombat);
-            
         }
     }
 
