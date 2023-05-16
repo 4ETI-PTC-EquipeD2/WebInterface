@@ -3,6 +3,7 @@ from firebase_admin import credentials
 from firebase_admin import db
 import cv2
 import base64
+from pyzbar.pyzbar import decode
 
 # Note: The path to the JSON file is different on your computer
 cred = credentials.Certificate("/Users/mathisgorvien/Desktop/projet-pokemon-9145b-firebase-adminsdk-pyblk-c58d839000.json")
@@ -59,6 +60,10 @@ def send_obstacle(position, game_id):
 def live_video():
     '''
     Lance la diffusion de la vidéo en direct sur la base de données Firebase. La vidéo est capturée à partir de la webcam. Les anciennes images sont supprimées si plus de 100 images sont stockées.
+
+    Cette fonction se charge aussi de la lecture des QR codes. Lorsqu'un QR code est détecté, la fonction 'send_qr_id' est appelée.
+
+    Note: Cette fonction est bloquante. Elle ne se termine pas tant que la diffusion de la vidéo n'est pas terminée.
     '''
 
     # Get a reference to the Firebase Realtime Database
@@ -93,6 +98,27 @@ def live_video():
         while True:
             # Read a frame from the camera
             success, frame = camera.read()
+
+            # Nos opérations sur le cadre viennent ici
+            gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+            codes = decode(gray)
+
+            for code in codes:
+                x, y, w, h = code.rect
+                cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
+
+                code_data = code.data.decode('utf-8')
+                cv2.putText(frame, code_data, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0,255,0), 2)
+
+                # print(f"QR Code Detected: {code_data}")
+                send_qr_id(code_data)
+
+            # # Affichage du cadre résultant
+            # cv2.imshow('frame', frame)
+
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
+            
             if success:
                 # Convert the frame to bytes
                 _, buffer = cv2.imencode('.jpg', frame, [cv2.IMWRITE_JPEG_QUALITY, 50])
@@ -113,6 +139,10 @@ def live_video():
                     oldest_frame = db_ref.order_by_key().limit_to_first(1).get()
                     oldest_key = list(oldest_frame.keys())[0]
                     db_ref.child(oldest_key).delete()
+
+        # Lorsque tout est fait, libérez la capture
+        camera.release()
+        cv2.destroyAllWindows()
 
 def action_id_listener():
     '''
